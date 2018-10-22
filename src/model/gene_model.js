@@ -1,4 +1,4 @@
-const { selectFullGene } = require('./db/queries')
+const { selectFullGene, selectPossibleGeneNames } = require('./db/queries')
 
 const getFullGene = (gene) => {
   return new Promise((resolve, reject) => {
@@ -7,6 +7,21 @@ const getFullGene = (gene) => {
   })
 }
 
+const getPossibleGeneNames = (input) => {
+  return new Promise((resolve, reject) => {
+    const possibleGeneNames = []
+    selectPossibleGeneNames(input)
+      .filter(x => x.length > 0)
+      .map(x => {
+        if(!possibleGeneNames.includes(x)){
+          possibleGeneNames.push(x)
+        }
+      })
+    resolve({'status': 'Success', 'geneNames': possibleGeneNames})
+  })
+}
+
 module.exports = {
-  getFullGene
+  getFullGene,
+  getPossibleGeneNames
 }
