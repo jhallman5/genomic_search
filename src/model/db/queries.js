@@ -12,7 +12,7 @@ const selectPossibleGeneNames = (gene) => {
   return shell.exec(`cut -f1 ${VARIENT_TSV} | egrep ^${gene}`).stdout.split('\n')
 }
 
-modules.exports = {
+module.exports = {
   selectFullGene,
   selectPossibleGeneNames
 }

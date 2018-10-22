@@ -17,3 +17,7 @@ Feel free to use any application server, web framework, programming languages, d
 Our expectation is that you will be writing some server code, client code, and applying some basic styling to display the results in a functional web application.  The application should include server-side tests and, time permitting, client tests.  The goal is to have a working app that spans the full stack instead of coming up with a design-winning UI that is beautiful but not functional.  With that said, feel free to be creative in any aspect of the application that you feel like would reveal your strengths or interests to us as your time permits.  
 
 A more, full-featured version of a genomic variant web application that we have developed here at Invitae can be found at http://clinvitae.invitae.com.  It is NOT meant for you to copy or implement all of the features available in Clinvitae, but rather you can use it to get more clarity and as an example of how the web application should behave.  We are more interested in finding out how you would build a working prototype of this web application than to have you come up with a clone of Clinvitae.
+
+TODO
+----------------------
+Construct an improved JSON model for Restful requests  
