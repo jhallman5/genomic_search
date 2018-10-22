@@ -21,3 +21,4 @@ A more, full-featured version of a genomic variant web application that we have 
 TODO
 ----------------------
 Construct an improved JSON model for Restful requests  
+Store varient_results as LFS / remove from gitignore
