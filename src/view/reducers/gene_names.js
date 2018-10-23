@@ -1,5 +1,5 @@
 const default_state = {
-  geneNames: null
+  geneNames: []
 }
 
 export default function reducer(state = default_state, action) {
