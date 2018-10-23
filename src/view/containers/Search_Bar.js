@@ -1,6 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-export default class Search_Bar extends React.Component {
+import { fetchPossibleGeneNames } from '../actions/gene_names'
+
+class Search_Bar extends React.Component {
   constructor(props){
     super(props)
     this.state = {
@@ -11,13 +14,18 @@ export default class Search_Bar extends React.Component {
   }
 
   handleChange(event){
-    this.setState({ 'InputValue': event.target.value })
-    console.log(this.state)
+    this.setState({ 'InputValue': event.target.value }, () =>
+      this.props.fetchPossibleGeneNames(this.state.InputValue)
+    )
   }
 
   handleSubmit(event){
     event.preventDefault()
-    console.log('form submitted')
+    console.log('API CAll => Display results')
+  }
+
+  componentDidUpdate(){
+    console.log('==== Display Gene names', this.props.geneNames)
   }
 
   render() {
@@ -28,3 +36,17 @@ export default class Search_Bar extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    geneNames: state.gene_names
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchPossibleGeneNames:(partialName) => dispatch(fetchPossibleGeneNames(partialName))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Search_Bar)

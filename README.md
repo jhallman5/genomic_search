@@ -22,3 +22,5 @@ TODO
 ----------------------
 Construct an improved JSON model for Restful requests  
 Store varient_results as LFS / remove from gitignore
+
+Improve gene name suggestion time 
