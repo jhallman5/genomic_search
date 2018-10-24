@@ -10,6 +10,8 @@ class Search_Bar extends React.Component {
     super(props)
     this.state = {
       value: '',
+      searchedTerm: '',
+      retainedSuggestions: [],
       suggestions: [],
     }
     this.handleChange = this.handleChange.bind(this)
@@ -18,6 +20,7 @@ class Search_Bar extends React.Component {
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this)
     this.getSuggestionValue = this.getSuggestionValue.bind(this)
     this.renderSuggestion = this.renderSuggestion.bind(this)
+    this.shouldRenderSuggestions = this.shouldRenderSuggestions.bind(this)
   }
 
   handleChange(event){
@@ -30,16 +33,31 @@ class Search_Bar extends React.Component {
   }
 
   onSuggestionsFetchRequested({ value }){
-    this.props.fetchPossibleGeneNames(value)
+    console.log('IN FETCH')
+    if(value.length < 2) {
+      return
+    }
+    if(this.state.searchedTerm == value.substring(0,2)){
+      this.setState({ suggestions: this.state.retainedSuggestions })
+      return
+    }
+    console.log( "(>'')>  " )
+    this.setState({ searchedTerm: value.substring(0,2) })
+    this.props.fetchPossibleGeneNames(value.substring(0,2))
       .then(()=> {
-        this.setState({ suggestions: this.props.geneNames })
+        this.setState({
+          retainedSuggestions: this.props.geneNames,
+          suggestions: this.props.geneNames
+        })
       })
  }
 
   onSuggestionsClearRequested(){
-    this.setState({
-      suggestions: []
-    })
+    this.setState({ suggestions: [] })
+  }
+
+  retainSuggestions() {
+    this.setState({ retainedSuggestions: this.state.suggestions})
   }
 
   getSuggestionValue(suggestion){
@@ -54,8 +72,13 @@ class Search_Bar extends React.Component {
     )
   }
 
+  shouldRenderSuggestions(value) {
+    return value
+  }
+
   componentDidUpdate(){
-    console.log('==== props', this.props, 'state', this.state)
+    console.log('==== ==== ==== ==== ==== ')
+    console.log('props', this.props, 'state', this.state)
   }
 
   render(){
@@ -75,6 +98,7 @@ class Search_Bar extends React.Component {
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             getSuggestionValue={this.getSuggestionValue}
             renderSuggestion={this.renderSuggestion}
+            shouldRenderSuggestions={this.shouldRenderSuggestions}
             inputProps={inputProps}
           />
         </FormGroup>
