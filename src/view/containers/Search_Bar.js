@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { FormGroup } from 'react-bootstrap'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import Autosuggest from 'react-autosuggest'
 
 import { fetchPossibleGeneNames } from '../actions/gene_names'
+import { fetchGeneData } from '../actions/gene_data'
 
 class Search_Bar extends React.Component {
   constructor(props){
@@ -34,7 +35,11 @@ class Search_Bar extends React.Component {
   handleSubmit(event){
     event.preventDefault()
     console.log('Calling API with ', this.state.value)
+    if(this.props.location.pathname == '/search-results'){
+      this.props.fetchGeneData(this.state.value)
+    }
     this.props.history.push('/search-results')
+    console.log('GETS CALLED')
   }
 
   onSuggestionsFetchRequested({ value }){
@@ -129,8 +134,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchPossibleGeneNames: (partialName) => dispatch(fetchPossibleGeneNames(partialName))
-    }
+    fetchPossibleGeneNames: (partialName) => dispatch(fetchPossibleGeneNames(partialName)),
+    fetchGeneData: (gene) => dispatch(fetchGeneData(gene))
+  }
 }
 
 export default  withRouter(connect(mapStateToProps, mapDispatchToProps)(Search_Bar))
