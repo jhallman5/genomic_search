@@ -25,8 +25,8 @@ class Search_Bar extends React.Component {
     this.suggestionFilter = this.suggestionFilter.bind(this)
   }
 
-  handleChange(event){
-    this.setState({ value : event.target.value })
+  handleChange(event, {newValue}){
+    this.setState({ value : newValue })
   }
 
   handleSubmit(event){
@@ -86,6 +86,9 @@ class Search_Bar extends React.Component {
       </div>
     )
   }
+  // componentDidUpdate(){
+  //   console.log('=====', this.state)
+  // }
 
   render(){
     const inputProps = {
