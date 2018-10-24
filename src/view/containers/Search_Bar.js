@@ -23,6 +23,7 @@ class Search_Bar extends React.Component {
     this.getSuggestionValue = this.getSuggestionValue.bind(this)
     this.renderSuggestion = this.renderSuggestion.bind(this)
     this.suggestionFilter = this.suggestionFilter.bind(this)
+    this.onSuggestionSelected = this.onSuggestionSelected.bind(this)
   }
 
   handleChange(event, {newValue}){
@@ -31,7 +32,7 @@ class Search_Bar extends React.Component {
 
   handleSubmit(event){
     event.preventDefault()
-    console.log('API CAll => Display results')
+    console.log('API CAll => Display results with ', this.state.value)
   }
 
   onSuggestionsFetchRequested({ value }){
@@ -86,9 +87,10 @@ class Search_Bar extends React.Component {
       </div>
     )
   }
-  // componentDidUpdate(){
-  //   console.log('=====', this.state)
-  // }
+
+  onSuggestionSelected(event){
+    this.setState({ value : event.target.textContent })
+  }
 
   render(){
     const inputProps = {
@@ -107,6 +109,7 @@ class Search_Bar extends React.Component {
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             getSuggestionValue={this.getSuggestionValue}
             renderSuggestion={this.renderSuggestion}
+            onSuggestionSelected={this.onSuggestionSelected}
             inputProps={inputProps}
           />
         </FormGroup>
