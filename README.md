@@ -20,4 +20,16 @@ A more, full-featured version of a genomic variant web application that we have 
 
 TODO
 ----------------------
-Construct an improved JSON model for Restful requests  
+#### Server-side
+* Construct an improved JSON model for Restful requests  
+* Store varient_results as LFS / remove from gitignore
+
+#### Search_BAR
+* Name search_bar does not always run suggestionFilter
+  Example case:
+    ENG(wait to load) > CAT(dont wait to load) > ENO
+    setState may be the culprit
+* find the best place to trim input value
+
+###### NOTES
+* abnormal handleChange required by auto-suggest library
