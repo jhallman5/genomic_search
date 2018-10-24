@@ -23,4 +23,7 @@ TODO
 Construct an improved JSON model for Restful requests  
 Store varient_results as LFS / remove from gitignore
 
-Improve gene name suggestion time 
+Name search_bar does not always run suggestionFilter
+  Example case:
+    ENG(wait to load) > CAT(dont wait to load) > ENO
+    setState may be the culprit

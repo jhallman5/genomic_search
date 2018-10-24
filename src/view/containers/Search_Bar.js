@@ -13,6 +13,8 @@ class Search_Bar extends React.Component {
       searchedTerm: '',
       retainedSuggestions: [],
       suggestions: [],
+      fetching: false,
+      mostRecentRequest: null
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -20,7 +22,7 @@ class Search_Bar extends React.Component {
     this.onSuggestionsClearRequested = this.onSuggestionsClearRequested.bind(this)
     this.getSuggestionValue = this.getSuggestionValue.bind(this)
     this.renderSuggestion = this.renderSuggestion.bind(this)
-    this.shouldRenderSuggestions = this.shouldRenderSuggestions.bind(this)
+    this.suggestionFilter = this.suggestionFilter.bind(this)
   }
 
   handleChange(event){
@@ -33,31 +35,44 @@ class Search_Bar extends React.Component {
   }
 
   onSuggestionsFetchRequested({ value }){
-    console.log('IN FETCH')
+    if(this.state.fetching) {
+      this.setState({ mostRecentRequest: value })
+      return
+    }
     if(value.length < 2) {
+      this.setState({ suggestions: [] })
       return
     }
     if(this.state.searchedTerm == value.substring(0,2)){
-      this.setState({ suggestions: this.state.retainedSuggestions })
+      this.suggestionFilter(value)
       return
     }
-    console.log( "(>'')>  " )
-    this.setState({ searchedTerm: value.substring(0,2) })
+    this.setState({
+      searchedTerm: value.substring(0,2),
+      fetching: true
+    })
     this.props.fetchPossibleGeneNames(value.substring(0,2))
       .then(()=> {
         this.setState({
           retainedSuggestions: this.props.geneNames,
-          suggestions: this.props.geneNames
+          suggestions: this.props.geneNames,
+          fetching: false
         })
+        if(this.state.mostRecentRequest){
+          this.onSuggestionsFetchRequested({ value: this.state.mostRecentRequest })
+          this.setState({ mostRecentRequest: null })
+        }
       })
- }
+  }
+
+  suggestionFilter(value){
+    const filteredSuggestions = this.state.retainedSuggestions
+      .filter(retained => value == retained.substring(0, value.length))
+    this.setState({ suggestions: filteredSuggestions })
+  }
 
   onSuggestionsClearRequested(){
     this.setState({ suggestions: [] })
-  }
-
-  retainSuggestions() {
-    this.setState({ retainedSuggestions: this.state.suggestions})
   }
 
   getSuggestionValue(suggestion){
@@ -70,15 +85,6 @@ class Search_Bar extends React.Component {
         {suggestion}
       </div>
     )
-  }
-
-  shouldRenderSuggestions(value) {
-    return value
-  }
-
-  componentDidUpdate(){
-    console.log('==== ==== ==== ==== ==== ')
-    console.log('props', this.props, 'state', this.state)
   }
 
   render(){
@@ -98,7 +104,6 @@ class Search_Bar extends React.Component {
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             getSuggestionValue={this.getSuggestionValue}
             renderSuggestion={this.renderSuggestion}
-            shouldRenderSuggestions={this.shouldRenderSuggestions}
             inputProps={inputProps}
           />
         </FormGroup>
