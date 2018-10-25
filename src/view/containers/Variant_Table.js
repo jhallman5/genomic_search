@@ -10,14 +10,12 @@ class Variant_Table extends React.Component {
   constructor(props){
     super(props)
   }
-
   render() {
     return (
-      <div>
-        <Table>
-          <VariantTableHeader />
+      <Table>
+        <VariantTableHeader />
           {
-            (this.props.geneData) &&
+            this.props.geneData &&
               <TableBody>
                 {
                   this.props.geneData.map( (gene, index) => {
@@ -38,8 +36,7 @@ class Variant_Table extends React.Component {
                 }
               </TableBody>
           }
-        </Table>
-      </div>
+      </Table>
     )
   }
 }
@@ -57,7 +54,8 @@ const styles = theme => ({
 
 const mapStateToProps = state => {
   return {
-    geneData: state.gene_data.geneData
+    geneData: state.gene_data.geneData,
+    loading: state.gene_data.loading
   }
 }
 

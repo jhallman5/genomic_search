@@ -10,9 +10,7 @@ export default function reducer(state = default_state, action) {
       })
     }
     default: {
-      return {
-        state
-      }
+      return Object.assign({}, state)
     }
   }
 }

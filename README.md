@@ -23,6 +23,7 @@ TODO
 #### Server-side
 * Construct an improved JSON model for Restful requests  
 * Store varient_results as LFS / remove from gitignore
+* Faster DB required
 
 #### Search_BAR
 * Name search_bar does not always run suggestionFilter
@@ -30,11 +31,11 @@ TODO
     ENG(wait to load) > CAT(dont wait to load) > ENO
     setState may be the culprit
 * find the best place to trim input value
+* Hitting enter should blur
 
 ###### NOTES
 * abnormal handleChange required by auto-suggest library
 
 #### Variant Table
-* Create loading spinner
 * Hold header and title bar in place
 * Add filter to table
