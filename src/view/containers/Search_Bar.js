@@ -1,9 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { FormGroup } from 'react-bootstrap'
+import { withRouter } from 'react-router-dom'
 import Autosuggest from 'react-autosuggest'
+import { FormGroup, withStyles, Paper  } from '@material-ui/core'
+
 
 import { fetchPossibleGeneNames } from '../actions/gene_names'
+import { fetchGeneData } from '../actions/gene_data'
 
 class Search_Bar extends React.Component {
   constructor(props){
@@ -32,7 +35,10 @@ class Search_Bar extends React.Component {
 
   handleSubmit(event){
     event.preventDefault()
-    console.log('API CAll => Display results with ', this.state.value)
+    if(this.props.location.pathname == '/search-results'){
+      this.props.fetchGeneData(this.state.value)
+    }
+    this.props.history.push('/search-results')
   }
 
   onSuggestionsFetchRequested({ value }){
@@ -93,15 +99,17 @@ class Search_Bar extends React.Component {
   }
 
   render(){
+    const { classes } = this.props;
+
     const inputProps = {
+      classes,
       placeholder: 'Search for genes',
       value: this.state.value,
-      onChange: this.handleChange
+      onChange: this.handleChange,
+      className: this.props.classes.container
     }
-
     return (
-      <div>
-      <form onSubmit={this.handleSubmit}>
+      <form  onSubmit={this.handleSubmit}>
         <FormGroup>
           <Autosuggest
             suggestions={this.state.suggestions}
@@ -109,15 +117,56 @@ class Search_Bar extends React.Component {
             onSuggestionsClearRequested={this.onSuggestionsClearRequested}
             getSuggestionValue={this.getSuggestionValue}
             renderSuggestion={this.renderSuggestion}
+            renderSuggestionsContainer={
+                (options) => (<Paper {...options.containerProps}>
+                    {options.children}
+                  </Paper>
+                )}
             onSuggestionSelected={this.onSuggestionSelected}
             inputProps={inputProps}
+            theme={{
+                  container: classes.container,
+                  suggestionsContainerOpen: classes.suggestionsContainerOpen,
+                  suggestionsList: classes.suggestionsList,
+                  suggestion: classes.suggestion,
+                }}
           />
         </FormGroup>
       </form>
-    </div>
     )
   }
 }
+
+const styles = theme => ({
+  container: {
+    fontSize: 25,
+    position: 'relative',
+    height: 30,
+    width: 400
+  },
+  suggestionsContainerOpen: {
+    position: 'absolute',
+    color: 'black',
+    zIndex: 1,
+    marginTop: 5,
+    left: 0,
+    right: 0,
+  },
+  suggestion: {
+    margin: 10,
+    display: 'block',
+    fontSize: 20,
+    borderBottom: '2px solid #F0F0F0',
+    '&:hover': {
+      backgroundColor: '#e5e5e5'
+    },
+  },
+  suggestionsList: {
+    margin: 10,
+    padding: 0,
+    listStyleType: 'none',
+  }
+});
 
 const mapStateToProps = state => {
   return {
@@ -127,8 +176,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchPossibleGeneNames: (partialName) => dispatch(fetchPossibleGeneNames(partialName))
-    }
+    fetchPossibleGeneNames: (partialName) => dispatch(fetchPossibleGeneNames(partialName)),
+    fetchGeneData: (gene) => dispatch(fetchGeneData(gene))
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search_Bar)
+export default  withRouter(withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Search_Bar)))

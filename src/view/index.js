@@ -5,11 +5,15 @@ import { Provider } from 'react-redux'
 
 import store from './store'
 import Home from './containers/Home'
+import Search_Results from './containers/Search_Results'
 
 const App = () =>
   <BrowserRouter>
-    <Route exact path='/' component={Home} />
-  </BrowserRouter>
+    <div>
+      <Route exact path='/' component={Home} />
+      <Route exact path='/search-results' component={Search_Results} />
+    </div>
+</BrowserRouter>
 
 ReactDOM.render( <Provider store={store}>
   <App />

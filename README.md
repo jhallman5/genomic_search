@@ -33,3 +33,8 @@ TODO
 
 ###### NOTES
 * abnormal handleChange required by auto-suggest library
+
+#### Variant Table
+* Create loading spinner
+* Hold header and title bar in place
+* Add filter to table
