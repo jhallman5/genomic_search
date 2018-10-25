@@ -1,8 +1,9 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { Button, Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core'
+import { Table, TableHead, TableBody, TableRow, TableCell } from '@material-ui/core'
 
+import VarientTableHeader from '../components/Varient_Table_Header'
 import { fetchGeneData } from '../actions/gene_data'
 
 class Varient_Table extends React.Component {
@@ -14,19 +15,7 @@ class Varient_Table extends React.Component {
     return (
       <div>
         <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Gene</TableCell>
-              <TableCell>Nucleotide Change</TableCell>
-              <TableCell>Protein Change</TableCell>
-              <TableCell>Alias</TableCell>
-              <TableCell>Region</TableCell>
-              <TableCell>Reported Classification</TableCell>
-              <TableCell>Last Evaluated</TableCell>
-              <TableCell>Last Updated</TableCell>
-              <TableCell>More Info</TableCell>
-            </TableRow>
-          </TableHead>
+          <VarientTableHeader />
           {
             (this.props.geneData) &&
               <TableBody>
