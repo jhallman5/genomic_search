@@ -1,7 +1,7 @@
 import React from 'react'
 import { TableHead, TableRow, TableCell, withStyles } from '@material-ui/core'
 
-const VarientTableHeader = props => (
+const VariantTableHeader = props => (
   <TableHead>
     <TableRow className={props.classes.row}>
       <TableCell className={props.classes.cell}>Gene</TableCell>
@@ -23,9 +23,9 @@ const styles = theme => ({
   },
   cell: {
     color: 'white',
-    fontSize: 18
+    fontSize: 20
   }
 })
 
 
-export default withStyles(styles)(VarientTableHeader)
+export default withStyles(styles)(VariantTableHeader)

@@ -3,10 +3,10 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Table, TableHead, TableBody, TableRow, TableCell, withStyles } from '@material-ui/core'
 
-import VarientTableHeader from '../components/Varient_Table_Header'
+import VariantTableHeader from '../components/Variant_Table_Header'
 import { fetchGeneData } from '../actions/gene_data'
 
-class Varient_Table extends React.Component {
+class Variant_Table extends React.Component {
   constructor(props){
     super(props)
   }
@@ -14,8 +14,8 @@ class Varient_Table extends React.Component {
   render() {
     return (
       <div>
-        <Table >
-          <VarientTableHeader />
+        <Table>
+          <VariantTableHeader />
           {
             (this.props.geneData) &&
               <TableBody>
@@ -51,7 +51,7 @@ const styles = theme => ({
     }
   },
   cell: {
-    fontSize: 14
+    fontSize: 18
   }
 })
 
@@ -67,5 +67,5 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default withRouter(withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Varient_Table))
+export default withRouter(withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Variant_Table))
 )
