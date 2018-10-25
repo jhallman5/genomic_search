@@ -34,12 +34,10 @@ class Search_Bar extends React.Component {
 
   handleSubmit(event){
     event.preventDefault()
-    console.log('Calling API with ', this.state.value)
     if(this.props.location.pathname == '/search-results'){
       this.props.fetchGeneData(this.state.value)
     }
     this.props.history.push('/search-results')
-    console.log('GETS CALLED')
   }
 
   onSuggestionsFetchRequested({ value }){
