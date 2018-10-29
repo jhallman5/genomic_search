@@ -16,7 +16,7 @@ class Search_Results extends React.Component {
       <div>
         <Grid container className={this.props.classes.root}>
           <Grid item className={this.props.classes.div}>
-            <img src={"/logo.png"}  className={this.props.classes.image} />
+            <img src={"/images/logo.png"}  className={this.props.classes.image} />
           </Grid>
           <Grid item className={this.props.classes.title}>
             Variant Search
