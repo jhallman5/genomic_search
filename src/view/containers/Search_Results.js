@@ -24,7 +24,7 @@ class Search_Results extends React.Component {
           </Grid>
         </Grid>
         {
-          this.props.loading ? <LoadingWheel />: <Variant_Table />
+          this.props.loading ? <LoadingWheel /> : <Variant_Table />
         }
       </div>
     )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, TableHead, TableRow, TableCell, withStyles } from '@material-ui/core'
+import { TableHead, TableRow, TableCell, withStyles } from '@material-ui/core'
 
 const VariantTableHeader = props => (
   <TableHead>

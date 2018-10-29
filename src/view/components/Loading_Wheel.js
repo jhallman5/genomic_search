@@ -11,16 +11,16 @@ class LoadingWheel extends React.Component {
   }
 
   componentDidMount() {
-    this.timer = setInterval(this.progress, 15);
+    this.timer = setInterval(this.progress, 15)
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer);
+    clearInterval(this.timer)
   }
 
   progress(){
     const { completed } = this.state;
-    this.setState({ completed: completed >= 100 ? 0 : completed + 1 });
+    this.setState({ completed: completed >= 100 ? 0 : completed + 1 })
   };
 
   render() {
@@ -46,6 +46,6 @@ const styles = theme => ({
     left: '50%',
     transform: 'translate(-50%, -50%)'
     },
-});
+})
 
-export default withStyles(styles)(LoadingWheel);
+export default withStyles(styles)(LoadingWheel)

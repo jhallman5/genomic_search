@@ -4,11 +4,11 @@
   "description": "'Genomic Varient Search' ",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/server.js",
+    "start": "webpack && node ./src/server.js",
     "dev": "nodemon ./src/server.js",
     "build": "webpack",
     "watch": "webpack --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc mocha --compilers js:babel-core/register ./test/**/*-test.js"
   },
   "repository": {
     "type": "git",
@@ -29,17 +29,21 @@
     "express": "^4.16.4",
     "react": "^16.5.2",
     "react-autosuggest": "^9.4.2",
-    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
     "redux": "^4.0.1",
     "redux-promise-middleware": "^5.1.1",
     "shelljs": "^0.8.2"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.6.0",
+    "jsdom": "^12.2.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.4",
+    "nyc": "^13.1.0",
     "webpack": "^4.21.0",
     "webpack-cli": "^3.1.2"
   }

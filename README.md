@@ -33,9 +33,14 @@ TODO
 * find the best place to trim input value
 * Hitting enter should blur
 
-###### NOTES
-* abnormal handleChange required by auto-suggest library
-
 #### Variant Table
 * Hold header and title bar in place
 * Add filter to table
+
+
+#### DATABASE
+
+I ran into trouble loading data from the tsv. While I know I need to stream the data, transform it to an acceptable format then pipe it into a COPY statement in postgres. As such I created the app that searches the .tsv using awk. It works, but is slow and inefficient. My ideal database design would be a postgres database with partitions sorted but starting letter of the gene. e.g. Table E would contain all the gene data for any gene starting with the letter E (ENG, EAF2, etc ). These 27 (26 letters and missing data) partitions would cut down the query operation time without adding too much overhead of query planning.
+
+#### Auto complete feature.
+Right now my client-side code hold off on making any HTTP requests until the user types two letters. It then fetches all matching results for the substring from the server and stores all unique names in memory on the browser. It finally filters for substrings longer than 2 client-side. This approach allows us to keep a relatively minimum amount of gene names on the client while be able to quickly conduct more specific filters. One possible optimization would be to make the HTTP request when the user types just one letter return all unique results from that table (e.g. Table E) and store those in memory on the browser. As long as the browser can handle it, this would increase performance as less fetch requests would be made. If user input was E > EN > E > EA a single fetch request would be made as opposed to the current implementation of two.
