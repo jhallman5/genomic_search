@@ -1,14 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
 import Autosuggest from 'react-autosuggest'
 import { FormGroup, withStyles, Paper  } from '@material-ui/core'
-
 
 import { fetchPossibleGeneNames } from '../actions/gene_names'
 import { fetchGeneData } from '../actions/gene_data'
 
-class Search_Bar extends React.Component {
+export class Search_Bar extends React.Component {
   constructor(props){
     super(props)
     this.state = {
@@ -35,10 +33,7 @@ class Search_Bar extends React.Component {
 
   handleSubmit(event){
     event.preventDefault()
-    if(this.props.location.pathname == '/search-results'){
-      this.props.fetchGeneData(this.state.value)
-    }
-    this.props.history.push('/search-results')
+    this.props.fetchGeneData(this.state.value)
   }
 
   onSuggestionsFetchRequested({ value }){
@@ -99,7 +94,7 @@ class Search_Bar extends React.Component {
   }
 
   render(){
-    const { classes } = this.props;
+    const { classes } = this.props
 
     const inputProps = {
       classes,
@@ -166,7 +161,7 @@ const styles = theme => ({
     padding: 0,
     listStyleType: 'none',
   }
-});
+})
 
 const mapStateToProps = state => {
   return {
@@ -181,4 +176,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default  withRouter(withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Search_Bar)))
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(Search_Bar))

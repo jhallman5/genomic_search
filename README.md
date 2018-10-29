@@ -1,3 +1,54 @@
+## App Initialization
+To install dependencies:   
+* ``` npm i ```   
+
+To run the App:   
+* ``` npm start ```  
+
+To run in dev mode:    
+* Terminal 1: ``` npm run dev ```   
+* Terminal 2: ``` npm run watch ```
+
+Using either method the app is running on [localhost:3000](http://localhost:3000/)
+
+#### DATABASE
+
+I ran into trouble loading data from the tsv into postgres. I know I need to stream the data, transform it to an acceptable format then pipe it into a COPY statement but I havent be able to successfully do that yet. As such I created the app that searches the .tsv using awk. It works, but is slow and inefficient. My ideal database design would be a postgres database with partitions sorted by first letter of the gene. e.g. Table E would contain all the gene data for any gene starting with the letter E (ENG, EAF2, etc ). These 27 (26 letters and missing data) partitions would cut down the query operation time without adding too much overhead of query planning.
+
+#### Interim  solution
+I also had difficulties uploading the tsv to git (using LFS). For this app to work you will have to save the tsv as src/model/db/variant_results.tsv. An inconvenience, but I did not want to invest too much time solving this problem as I plan to implement the postgres db above.
+
+#### Auto complete feature.
+Right now my client-side code hold off on making any HTTP requests until the user types two letters. It then fetches all matching results for the substring from the server and stores all unique names in memory on the browser. It finally filters for substrings longer than 2 client-side. This approach allows us to keep a relatively minimum amount of gene names on the client while be able to quickly conduct more specific filters. One possible optimization would be to make the HTTP request when the user types just one letter return all unique results from that table (e.g. Table E) and store those in memory on the browser. As long as the browser can handle it, this would increase performance as less fetch requests would be made. If user input was E > EN > E > EA a single fetch request would be made as opposed to the current implementation of two.
+
+#### Testing
+Unfortunately I did not have the opportunity to complete my tests. I believe working to get the postges db loaded was the priority. I put a generic  layout on how my test would be presented when they are written. You can view this with:    
+* ``` npm test ```
+
+#### Priority list
+* Load DB
+* Server-side tests
+* Client-side tests
+* TODO list 
+
+## TODO
+#### Server-side
+* Construct an improved JSON model for Restful requests  
+* Store varient_results as LFS / remove from gitignore
+* Faster DB required
+
+#### Search_BAR
+* Name search_bar does not always run suggestionFilter
+  Example case:
+    ENG(wait to load) > CAT(dont wait to load) > ENO
+    setState may be the culprit
+* find the best place to trim input value
+* Hitting enter should blur
+
+#### Variant Table
+* Hold header and title bar in place
+* Add filter to table
+
 Assignment
 -----------------
 Create a genomic variant web application that allows a user to search for genomic variants based on a gene name and display the results in a tabular view.
@@ -17,24 +68,3 @@ Feel free to use any application server, web framework, programming languages, d
 Our expectation is that you will be writing some server code, client code, and applying some basic styling to display the results in a functional web application.  The application should include server-side tests and, time permitting, client tests.  The goal is to have a working app that spans the full stack instead of coming up with a design-winning UI that is beautiful but not functional.  With that said, feel free to be creative in any aspect of the application that you feel like would reveal your strengths or interests to us as your time permits.  
 
 A more, full-featured version of a genomic variant web application that we have developed here at Invitae can be found at http://clinvitae.invitae.com.  It is NOT meant for you to copy or implement all of the features available in Clinvitae, but rather you can use it to get more clarity and as an example of how the web application should behave.  We are more interested in finding out how you would build a working prototype of this web application than to have you come up with a clone of Clinvitae.
-
-TODO
-----------------------
-#### Server-side
-* Construct an improved JSON model for Restful requests  
-* Store varient_results as LFS / remove from gitignore
-
-#### Search_BAR
-* Name search_bar does not always run suggestionFilter
-  Example case:
-    ENG(wait to load) > CAT(dont wait to load) > ENO
-    setState may be the culprit
-* find the best place to trim input value
-
-###### NOTES
-* abnormal handleChange required by auto-suggest library
-
-#### Variant Table
-* Create loading spinner
-* Hold header and title bar in place
-* Add filter to table
