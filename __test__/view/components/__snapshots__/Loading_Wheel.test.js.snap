@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadingWheel renders 1`] = `
+<div>
+  <div
+    aria-valuenow={0}
+    className="MuiCircularProgress-root-1 MuiCircularProgress-colorPrimary-4 color position top left transform"
+    role="progressbar"
+    style={
+      Object {
+        "height": 75,
+        "transform": "rotate(0.000deg)",
+        "width": 75,
+      }
+    }
+  >
+    <svg
+      className="MuiCircularProgress-svg-6"
+      viewBox="22 22 44 44"
+    >
+      <circle
+        className="MuiCircularProgress-circle-7"
+        cx={44}
+        cy={44}
+        fill="none"
+        r={20.2}
+        strokeWidth={3.6}
+        style={
+          Object {
+            "strokeDasharray": "126.920",
+            "strokeDashoffset": "126.920px",
+          }
+        }
+      />
+    </svg>
+  </div>
+</div>
+`;
