@@ -19,7 +19,7 @@ describe('LoadingWheel', () =>  {
     }
   }
 
-  describe('Lifecycle methods', () =>  {
+  describe('Lifecycle Methods', () =>  {
     test('renders', () => {
       const wrapper = shallow(<LoadingWheel {...props} />);
       expect(wrapper.exists()).toBe(true);

@@ -8,7 +8,7 @@
     "dev": "nodemon ./src/server.js",
     "build": "webpack",
     "watch": "webpack --watch",
-    "test": "jest --coverage"
+    "test": "jest --coverage --verbose"
   },
   "repository": {
     "type": "git",
