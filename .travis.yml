@@ -5,5 +5,5 @@ cache:
   directories:
     - node_modules
 script:
-  npm test
-  npm build 
+  jest --coverage && cat ./coverage/lcov.info | coveralls && rm -r ./coverage
+  npm build
