@@ -5,4 +5,7 @@ cache:
   directories:
     - node_modules
 script:
-  jest --coverage --coverageReporters=text-lcov | coveralls 
+  - snyk test
+  - jest --coverage --coverageReporters=text-lcov | coveralls
+after_success:
+  - snyk monitor
