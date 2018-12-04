@@ -1,7 +1,7 @@
 import React from 'react'
 import { withStyles, CircularProgress } from '@material-ui/core/'
 
-class LoadingWheel extends React.Component {
+export class LoadingWheel extends React.Component {
   constructor() {
     super()
     this.state = {
