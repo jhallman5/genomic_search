@@ -1,4 +1,11 @@
+# Genomic Search
+
+[![Build Status](https://travis-ci.com/jhallman5/genomic_search.svg?branch=master)](https://travis-ci.com/jhallman5/genomic_search)
+[![Coverage Status](https://coveralls.io/repos/github/jhallman5/genomic_search/badge.svg?branch=master)](https://coveralls.io/github/jhallman5/genomic_search?branch=master)
+[![Known Vulnerabilities](https://snyk.io/test/github/jhallman5/genomic_search/badge.svg)](https://snyk.io/test/github/jhallman5/genomic_search)
+
 ## App Initialization
+
 To install dependencies:   
 * ``` npm i ```   
 
@@ -29,7 +36,7 @@ Unfortunately I did not have the opportunity to complete my tests. I believe wor
 * Load DB
 * Server-side tests
 * Client-side tests
-* TODO list 
+* TODO list
 
 ## TODO
 #### Server-side
