@@ -56,7 +56,7 @@ describe('Search_Bar', () =>  {
     test('Returns a div with the suggestion (YAP1)', () => {
       const wrapper = shallow(<Search_Bar {...props} />);
       const instance = shallow(wrapper.instance().renderSuggestion('YAP1'));
-      expect(instance.text()).toBe('YAP1');
+      expect(instance.text()).toBe('YAPPP1');
     })
   })
 })
