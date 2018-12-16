@@ -11,23 +11,11 @@ const client = new Client({
 })
 client.connect()
 
-const getFullGene = (gene) => {
-  client.query("SELECT * FROM gene_table WHERE gene_name='ENG' LIMIT 1;", (err, res) => {
-    console.log(err, res)
-    client.end()
-  })
-  // return new Promise((resolve, reject) => {
-  //   const geneList = selectFullGene(gene).filter(x => x.length > 1)
-  //   resolve({'status': 'Success', 'geneList': geneList})
-  // })
+const getFullGene = async (gene) => {
+  const { rows } = await client.query(`SELECT * FROM gene_table WHERE gene_name='${gene}';`)
+  return {'status': 'Success', 'geneList': rows}
+  client.end()
 }
-
-// const getFullGene = (gene) => {
-//   return new Promise((resolve, reject) => {
-//     const geneList = selectFullGene(gene).filter(x => x.length > 1)
-//     resolve({'status': 'Success', 'geneList': geneList})
-//   })
-// }
 
 const getPossibleGeneNames = (input) => {
   return new Promise((resolve, reject) => {

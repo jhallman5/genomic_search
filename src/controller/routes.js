@@ -9,7 +9,7 @@ router.get('/geneName/:partialName', (req, res) => {
 
 router.get('/fullGene/:geneName', (req, res) => {
   gene_model.getFullGene(req.params.geneName)
-    .then(FullGene => res.json(FullGene) )
+    .then( FullGene => res.json(FullGene) )
 })
 
 router.get('/*', (req, res) => {
