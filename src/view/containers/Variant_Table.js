@@ -20,15 +20,15 @@ class Variant_Table extends React.Component {
                   this.props.geneData.map( (gene, index) => {
                     return (
                       <TableRow className={this.props.classes.row} key={index} >
-                        <TableCell className={this.props.classes.cell} component="th" scope="row">{gene[0]}</TableCell>
-                        <TableCell className={this.props.classes.cell} >{gene[1]}</TableCell>
-                        <TableCell className={this.props.classes.cell} >{gene[2]}</TableCell>
-                        <TableCell className={this.props.classes.cell} >{gene[4]}</TableCell>
-                        <TableCell className={this.props.classes.cell} >{gene[6]}</TableCell>
-                        <TableCell className={this.props.classes.cell} >{gene[7]}</TableCell>
-                        <TableCell className={this.props.classes.cell} >{gene[10]}</TableCell>
-                        <TableCell className={this.props.classes.cell} >{gene[11]}</TableCell>
-                        <TableCell className={this.props.classes.cell} >{gene[12]}</TableCell>
+                        <TableCell className={this.props.classes.cell} component="th" scope="row">{gene.gene_name}</TableCell>
+                        <TableCell className={this.props.classes.cell} >{gene.nucleotide_change}</TableCell>
+                        <TableCell className={this.props.classes.cell} >{gene.protein_change}</TableCell>
+                        <TableCell className={this.props.classes.cell} >{gene.alias}</TableCell>
+                        <TableCell className={this.props.classes.cell} >{gene.region}</TableCell>
+                        <TableCell className={this.props.classes.cell} >{gene.reported_classification}</TableCell>
+                        <TableCell className={this.props.classes.cell} >{gene.last_evaluated}</TableCell>
+                        <TableCell className={this.props.classes.cell} >{gene.last_updated}</TableCell>
+                        <TableCell className={this.props.classes.cell} >{gene.url}</TableCell>
                       </TableRow>
                     )
                   })
