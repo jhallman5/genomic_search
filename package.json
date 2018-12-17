@@ -4,8 +4,8 @@
   "description": "'Genomic Varient Search' ",
   "main": "index.js",
   "scripts": {
-    "start": "webpack && node ./src/server.js",
-    "dev": "nodemon ./src/server.js",
+    "start": "webpack && node -r dotenv/config ./src/server.js",
+    "dev": "nodemon -r dotenv/config ./src/server.js",
     "build": "webpack",
     "watch": "webpack --watch",
     "test": "snyk test && jest --coverage --verbose"
@@ -22,7 +22,9 @@
   "homepage": "https://github.com/jhallman5/genomic_search#readme",
   "dependencies": {
     "@material-ui/core": "^3.3.1",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "pg": "^7.7.1",
     "react": "^16.5.2",
     "react-autosuggest": "^9.4.2",
     "react-dom": "^16.5.2",
