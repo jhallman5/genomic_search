@@ -1,5 +1,3 @@
-const { selectFullGene, selectPossibleGeneNames } = require('./db/queries')
-
 const { Pool, Client } = require('pg')
 
 const client = new Client({
@@ -17,19 +15,10 @@ const getFullGene = async (gene) => {
   client.end()
 }
 
-const getPossibleGeneNames = (input) => {
-  return new Promise((resolve, reject) => {
-    const possibleGeneNames = []
-    selectPossibleGeneNames(input)
-      .filter(x => x.length > 0)
-      .filter(x => x != 'Gene')
-      .map(x => {
-        if(!possibleGeneNames.includes(x)){
-          possibleGeneNames.push(x)
-        }
-      })
-    resolve({'status': 'Success', 'geneNames': possibleGeneNames})
-  })
+const getPossibleGeneNames = async (input) => {
+  const { rows } = await client.query(`SELECT DISTINCT gene_name FROM gene_table WHERE gene_name ILIKE '${input}%';`)
+  return {'status': 'Success', 'geneNames': rows.map(x => x.gene_name)}
+  client.end()
 }
 
 module.exports = {
