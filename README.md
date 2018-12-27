@@ -23,9 +23,9 @@ Right now my client-side code hold off on making any HTTP requests until the use
 * ``` npm test ```
 
 #### Priority list
-* Implement docker / deploy 
-* Increase unit test coverage 
-* Add Integration tests 
+* Implement docker / deploy
+* Increase unit test coverage
+* Add Integration tests
 * TODO list
 
 ## TODO
@@ -44,8 +44,11 @@ Right now my client-side code hold off on making any HTTP requests until the use
 * Hold header and title bar in place
 * Add filter to table
 
-#### DB 
-* Add indexing 
+#### DB
+* Add indexing
+
+## CollapsibleCell
+* error handle if there is no other mappings & no nucleotide chagne
 
 Specs
 -----------------

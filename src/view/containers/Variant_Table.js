@@ -23,13 +23,13 @@ class Variant_Table extends React.Component {
                       <TableRow className={this.props.classes.row} key={index} >
                         <TableCell className={this.props.classes.cell} component="th" scope="row">{gene.gene_name}</TableCell>
                         <CollapsibleCell gene={gene}/>
-                        <TableCell className={this.props.classes.cell} >{gene.protein_change}</TableCell>
-                        <TableCell className={this.props.classes.cell} >{gene.alias}</TableCell>
-                        <TableCell className={this.props.classes.cell} >{gene.region}</TableCell>
-                        <TableCell className={this.props.classes.cell} >{gene.reported_classification}</TableCell>
-                        <TableCell className={this.props.classes.cell} >{gene.last_evaluated}</TableCell>
-                        <TableCell className={this.props.classes.cell} >{gene.last_updated}</TableCell>
-                        <TableCell className={this.props.classes.cell} >{gene.url}</TableCell>
+                        <TableCell className={this.props.classes.cell}>{gene.protein_change ? gene.protein_change : '-'}</TableCell>
+                        <TableCell className={this.props.classes.cell}>{gene.alias ? gene.alias : '-'}</TableCell>
+                        <TableCell className={this.props.classes.cell}>{gene.region ? gene.region : '-'}</TableCell>
+                        <TableCell className={this.props.classes.cell}>{gene.reported_classification ? gene.reported_classification : '-'}</TableCell>
+                        <TableCell className={this.props.classes.cell}>{gene.last_evaluated ? gene.last_evaluated : '-'}</TableCell>
+                        <TableCell className={this.props.classes.cell}>{gene.last_updated ? gene.last_updated : '-'}</TableCell>
+                        <TableCell className={this.props.classes.cell}>{gene.url ? gene.url : '-' }</TableCell>
                       </TableRow>
                     )
                   })
