@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Table, TableBody, TableRow, TableCell, withStyles } from '@material-ui/core'
 
 import VariantTableHeader from '../components/Variant_Table_Header'
-import CollapsibleCell from '../components/Collapsible_Cell'
+import CollapsibleCell from './Collapsible_Cell'
 import { fetchGeneData } from '../actions/gene_data'
 
 class Variant_Table extends React.Component {

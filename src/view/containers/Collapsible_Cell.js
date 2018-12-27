@@ -2,6 +2,8 @@ import React from 'react'
 import { TableCell, withStyles, Icon } from '@material-ui/core'
 import { PlayArrowOutlined } from '@material-ui/icons'
 
+import Other_Mapping from '../components/Other_Mapping'
+
 export class CollapsibleCell extends React.Component {
   constructor(props){
     super(props)
@@ -28,6 +30,15 @@ export class CollapsibleCell extends React.Component {
               onClick={this.toggleExpand}
             />
           </Icon>
+          {this.props.gene.nucleotide_change}
+          {
+            this.state.expanded &&
+              this.props.gene.other_mappings
+                .split(',')
+                .map((other_mapping, key) =>
+                  <Other_Mapping key={key} info={other_mapping}/>
+                )
+          }
       </TableCell>
     )
   }
@@ -35,8 +46,8 @@ export class CollapsibleCell extends React.Component {
 
 const styles = theme => ({
   cell: {
-    color: 'white',
-    fontSize: 20
+    color: 'black',
+    fontSize: 16
   },
   icon: {
     color: '#29736A',
@@ -46,9 +57,5 @@ const styles = theme => ({
     transform: 'rotate(90deg)'
   }
 })
-
-
-// {
-//   this.props.gene.other_mappings &&
 
 export default withStyles(styles)(CollapsibleCell)
