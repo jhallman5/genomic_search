@@ -50,7 +50,7 @@ const styles = theme => ({
     fontSize: 16
   },
   icon: {
-    color: '#29736A',
+    color: '#3e5e9c',
   },
   iconActive: {
     color: '#3e5e9c',

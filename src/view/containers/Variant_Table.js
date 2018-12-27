@@ -29,7 +29,7 @@ class Variant_Table extends React.Component {
                         <TableCell className={this.props.classes.cell}>{gene.reported_classification ? gene.reported_classification : '-'}</TableCell>
                         <TableCell className={this.props.classes.cell}>{gene.last_evaluated ? gene.last_evaluated : '-'}</TableCell>
                         <TableCell className={this.props.classes.cell}>{gene.last_updated ? gene.last_updated : '-'}</TableCell>
-                        <TableCell className={this.props.classes.cell}>{gene.url ? gene.url : '-' }</TableCell>
+                        <TableCell className={this.props.classes.cell}>{gene.url ? <a href={gene.url}>{gene.source}</a> : '-' }</TableCell>
                       </TableRow>
                     )
                   })
