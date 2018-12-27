@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Table, TableBody, TableRow, TableCell, withStyles } from '@material-ui/core'
 
 import VariantTableHeader from '../components/Variant_Table_Header'
+import CollapsibleCell from '../components/Collapsible_Cell'
 import { fetchGeneData } from '../actions/gene_data'
 
 class Variant_Table extends React.Component {
@@ -21,7 +22,7 @@ class Variant_Table extends React.Component {
                     return (
                       <TableRow className={this.props.classes.row} key={index} >
                         <TableCell className={this.props.classes.cell} component="th" scope="row">{gene.gene_name}</TableCell>
-                        <TableCell className={this.props.classes.cell} >{gene.nucleotide_change}</TableCell>
+                        <CollapsibleCell gene={gene}/>
                         <TableCell className={this.props.classes.cell} >{gene.protein_change}</TableCell>
                         <TableCell className={this.props.classes.cell} >{gene.alias}</TableCell>
                         <TableCell className={this.props.classes.cell} >{gene.region}</TableCell>
